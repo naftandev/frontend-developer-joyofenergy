@@ -1,4 +1,6 @@
-export const getReadings = async (length = 1200) => {
+import { TReadingValues } from './interfaces';
+
+export const getReadings = async (length = 1200): Promise<TReadingValues[]> => {
   const current = Date.now();
   const hour = 1000 * 60 * 60;
   return [...new Array(length)].map((_, index) => ({
@@ -7,7 +9,7 @@ export const getReadings = async (length = 1200) => {
   }));
 };
 
-export const groupByDay = (readings) => {
+export const groupByDay = (readings: TReadingValues[]): TReadingValues[] => {
   const groupedByDay = readings.reduce((curr, { time, value }) => {
     const readingDate = new Date(time);
     const day = new Date(
@@ -22,11 +24,11 @@ export const groupByDay = (readings) => {
 
   return Object.entries(groupedByDay).map(([day, value]) => ({
     time: Number(day),
-    value,
+    value: Number(value),
   }));
 };
 
-export const sortByTime = (readings) => {
+export const sortByTime = (readings: TReadingValues[]): TReadingValues[] => {
   return [...readings].sort(
     (readingA, readingB) => readingA.time - readingB.time
   );

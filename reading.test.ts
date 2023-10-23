@@ -1,20 +1,20 @@
-import { getReadings, groupByDay, sortByTime } from "./reading";
+import { getReadings, groupByDay, sortByTime } from './reading';
 
-describe("#reading", function () {
-  describe("#getReadings", () => {
-    it("should generate readings with specified length", async () => {
+describe('#reading', function () {
+  describe('#getReadings', () => {
+    it('should generate readings with specified length', async () => {
       const length = 100;
       expect(await getReadings(length)).toHaveLength(length);
     });
 
-    it("should generate readings with timestamps and random values", async () => {
+    it('should generate readings with timestamps and random values', async () => {
       const reading = (await getReadings(1))[0];
 
-      expect(typeof reading.time).toBe("number");
-      expect(typeof reading.value).toBe("number");
+      expect(typeof reading.time).toBe('number');
+      expect(typeof reading.value).toBe('number');
     });
 
-    it("should generate readings by hours and ordered by time descending", async () => {
+    it('should generate readings by hours and ordered by time descending', async () => {
       const readings = await getReadings(4);
 
       expect(readings).toHaveLength(4);
@@ -25,8 +25,8 @@ describe("#reading", function () {
     });
   });
 
-  describe("#groupedByDay", () => {
-    it("should get readings with timestamps and values", () => {
+  describe('#groupedByDay', () => {
+    it('should get readings with timestamps and values', () => {
       const readings = [
         { time: new Date(2021, 12, 17, 10, 24).getTime(), value: 50 },
         {
@@ -41,11 +41,11 @@ describe("#reading", function () {
 
       const groupedReadings = groupByDay(readings);
       expect(groupedReadings).toHaveLength(2);
-      expect(typeof groupedReadings[0].time).toBe("number");
-      expect(typeof groupedReadings[0].value).toBe("number");
+      expect(typeof groupedReadings[0].time).toBe('number');
+      expect(typeof groupedReadings[0].value).toBe('number');
     });
 
-    it("should get readings grouped by day", async () => {
+    it('should get readings grouped by day', async () => {
       const readings = [
         { time: new Date(2021, 12, 17, 10, 24).getTime(), value: 50 },
         {
@@ -67,18 +67,18 @@ describe("#reading", function () {
       expect(
         groupedReadings.find(
           (reading) => reading.time === new Date(2021, 12, 17).getTime()
-        ).value
+        )?.value
       ).toBe(90);
       expect(
         groupedReadings.find(
           (reading) => reading.time === new Date(2021, 12, 16).getTime()
-        ).value
+        )?.value
       ).toBe(35);
     });
   });
 
-  describe("#sortByTime", () => {
-    it("should put latest reading to the last", () => {
+  describe('#sortByTime', () => {
+    it('should put latest reading to the last', () => {
       const readings = [
         { time: new Date(2021, 12, 17, 10, 24).getTime(), value: 50 },
         {
@@ -107,7 +107,7 @@ describe("#reading", function () {
       });
     });
 
-    it("should not change original array", () => {
+    it('should not change original array', () => {
       const readings = [
         { time: new Date(2021, 12, 17, 10, 24).getTime(), value: 50 },
         {

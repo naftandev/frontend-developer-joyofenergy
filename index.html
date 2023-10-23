@@ -63,6 +63,8 @@
         <h1 class="regular darkgray line-height-1 mb3">Energy consumption</h1>
         <section class="mb3">
           <button
+            id="lastMonthBtn"
+            type="button"
             class="
               h5
               inline-block
@@ -80,10 +82,31 @@
           >
             Last 30 days
           </button>
+          <button
+            id="lastDayBtn"
+            type="button"
+            class="
+              h5
+              inline-block
+              shadow-2
+              pl2
+              pr2
+              pt1
+              pb1
+              roundedMore
+              border-grey
+              bg-blue
+              white
+              bold
+            "
+          >
+            Last 24 hours
+          </button>
         </section>
         <section class="chartHeight mb3">
           <canvas id="usageChart"></canvas>
         </section>
+        <section id="dashboard" class="flex justify-around"></section>
       </article>
     </div>
   </body>
